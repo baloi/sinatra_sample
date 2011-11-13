@@ -10,4 +10,35 @@
   require 'app'
   require 'sinatra/activerecord/rake'
 
-> 
+> Run 'rake'
+  $ rake -T   # should show 'rake db:create_migration & rake db:migrate'
+
+> Run rake create migration
+  $ rake db:create_migration NAME=create_shortened_urls
+
+> edit the migration created:
+
+  class CreateShortenedUrls < ActiveRecord::Migration
+    def self.up
+      create_table :shortened_urls do |t|
+        t.string :url
+      end
+      add_index :shortened_urls, :url
+    end
+  
+    def self.down
+      drop_table :shortened_urls
+    end
+  end
+
+> run db:migrate
+  $ rake db:migrate
+  
+  # this creates 'development.db'
+  # use "$ sqlite3 development.db" to view
+
+> you can tinker with the migration by going into irb
+  . require './app'
+  . require './db/migrate/20111113224704_create_shortened_urls'
+  . CreateShortenedUrls.down # this will drop the table
+  . CreateShortenedUrls.up   # this iwll create the table again
