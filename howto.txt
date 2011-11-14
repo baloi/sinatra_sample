@@ -42,3 +42,87 @@
   . require './db/migrate/20111113224704_create_shortened_urls'
   . CreateShortenedUrls.down # this will drop the table
   . CreateShortenedUrls.up   # this iwll create the table again
+
+> Now create the active record model in app.rb
+
+class ShortenedURL < ActiveRecord::Base 
+  validates_uniqueness_of :url
+  validates_presence_of :url
+end
+
+> Now create the root path
+
+  get '/' do
+    "hello world"
+  end
+
+> run app with
+  $ ruby -rubygems app.rb
+
+> Install capybara:
+  $ sudo port install libffi # before capybara
+  $ gem install capybara
+
+> create test directory and first_test.rb:
+
+  require './app'
+  require 'capybara'
+  require 'capybara/dsl'
+  require 'test/unit'
+  
+  class FirstTest < Test::Unit::TestCase
+    include Capybara::DSL
+  
+    def setup
+      Capybara.app = Sinatra::Application.new
+    end
+  
+    def test_it_works
+      visit '/'
+      assert page.has_content?('Hello World')
+    end
+  
+  end
+  
+  # Note: Capybara's DSL sample: https://github.com/jnicklas/capybara
+  
+> test from root directory and just do ruby tests/*_test.rb
+
+> install guard:
+  $ gem install guard
+  $ gem install guard-test
+  $ gem install rb-fsevent
+
+> initialize guard
+  $ guard init test
+
+> run guard
+  $ guard
+
+> how about testing it with restclient?
+  $ restclient http://localhost:4567
+  - get '/'
+
+> how about vim commands?
+  :tabs         list all tabs including their displayed windows
+  :tabm 0       move current tab to first
+  :tabm         move current tab to last
+  :tabm {i}     move current tab to position i+1
+  
+  :tabn         go to next tab
+  :tabp         go to previous tab
+  :tabfirst     go to first tab
+  :tablast      go to last tab
+
+  :tabedit {file}   edit specified file in a new tab
+  :tabfind {file}   open a new tab with filename given, searching the 'path' to find it
+  :tabclose         close current tab
+  :tabclose {i}     close i-th tab
+  :tabonly          close all other tabs (show only the current tab)
+
+  In normal mode:
+  gt            go to next tab
+  gT            go to previous tab
+  {i}gt         go to tab in position i
+
+> 
