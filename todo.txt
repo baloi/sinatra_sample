@@ -1,0 +1,15 @@
+> PM for configuring/planning and AM for coding...
+
+> simple post/therapist test via Capybara & httpclient
+> simple post/therapist from smalltalk via http (no xml yet) deal with xml only with
+  more complex data sets!!
+
+> A Scheduler is a purely data crunching app that takes care of schedules, you can query or 
+  feed schedules(in sched-data format) or request editing of specific areas in the schedules itself
+  - input and display of data will be done by other applications.
+  - http is the mode of communication between the Scheduler and it's clients
+  - write simple tests and make it run with 'guard'
+
+> smalltalk gui for scheduling system
+> each request sends password too.
+> create simplest protocol maybe with encryption?
