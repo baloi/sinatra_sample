@@ -125,4 +125,7 @@ end
   gT            go to previous tab
   {i}gt         go to tab in position i
 
-> 
+> gem install shotgun
+  $ shotgun -p 4567 app.rb
+
+>
