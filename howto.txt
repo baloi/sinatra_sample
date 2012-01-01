@@ -5,7 +5,7 @@
   $ gem install sqlite3
 > create 'app.rb':
   require 'sinatra'
-  require 'sinatra-activerecord'
+  require 'sinatra/activerecord'
 > create 'Rakefile':
   require 'app'
   require 'sinatra/activerecord/rake'
